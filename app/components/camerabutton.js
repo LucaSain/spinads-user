@@ -52,6 +52,7 @@ export default function CameraButton() {
                   console.info(error);
                 }
               }}
+              constraints={{ facingMode: { exact: "environment" } }}
             />
           </div>
         )}
