@@ -8,6 +8,7 @@ export async function uploadPicture(formData) {
 }
 
 export async function triggerBicicleta(formData) {
+  console.log("dsfijlhad");
   await fetch(process.env.BE_URL + "/api/bikes/rentbike/AAA-002", {
     headers: {
       Authorization: "Bearer " + process.env.AUTH_TOKEN,
