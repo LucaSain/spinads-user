@@ -75,6 +75,10 @@ export default function CameraButton() {
                 components={{ audio: false, tracker: true }}
                 onResult={(result, text) => {
                   setData(text);
+                  if (formRef.current) {
+                    formRef.current.submit();
+                    alert("Am DAT SUBMIT");
+                  }
                   console.log(result, text);
                 }}
                 onError={(error) => {
