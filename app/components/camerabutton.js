@@ -24,8 +24,8 @@ export default function CameraButton() {
         method: "POST",
       }).then((res) => {
         console.log(res);
-        setScanning(2);
       });
+      setScanning(2);
     }
   }, [data]);
   if (pathname == "/") {
