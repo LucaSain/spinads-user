@@ -7,6 +7,7 @@ import { Scanner } from "@yudiel/react-qr-scanner";
 import Link from "next/link";
 export default function CameraButton() {
   const [scanning, setScanning] = useState(0);
+
   const [data, setData] = useState("No result");
   const pathname = usePathname();
 
@@ -77,7 +78,7 @@ export default function CameraButton() {
                 constraints={{ facingMode: { exact: "environment" } }}
               />
             </div>
-          ) : (
+          ) : scanning == 2 ? (
             <div className="h-full w-full p-4 text-white">
               <div className="text-5xl font-bold">Ride started</div>
               <div className="text-lg">Drive safely</div>
@@ -96,6 +97,75 @@ export default function CameraButton() {
               >
                 End ride
               </div>
+            </div>
+          ) : (
+            <div className="flex h-full w-full flex-col gap-2 p-4 text-white">
+              <div className="text-5xl font-bold">Course finished</div>
+
+              <br />
+              <div className="font-mono text-3xl font-bold">Time: 12min</div>
+              <div className="font-mono text-3xl font-bold">
+                Distance: 300 km
+              </div>
+              <div className="font-mono text-3xl font-bold">Points: 300</div>
+              <div className="font-mono text-3xl font-bold">Streak: 5🔥</div>
+              <div className="font-mono text-3xl font-bold">Quests:</div>
+
+              <div className="h-max w-full rounded-lg border-[1px] border-white p-2">
+                <div className="flex h-full w-full flex-row items-center gap-2">
+                  <div className="font-mono text-xl">Ride 1km in Regie</div>
+                  <div className="flex-1"></div>
+                  <div
+                    className="radial-progress"
+                    style={{ "--value": 70, "--size": "3rem" }}
+                    role="progressbar"
+                  >
+                    70%
+                  </div>
+                </div>
+              </div>
+              <div className="h-max w-full rounded-lg border-[1px] border-white p-2">
+                <div className="flex h-full w-full flex-row items-center gap-2">
+                  <div className="font-mono text-xl">
+                    The one-way speed of light
+                  </div>
+                  <div className="flex-1"></div>
+                  <div
+                    className="radial-progress"
+                    style={{ "--value": 70, "--size": "3rem" }}
+                    role="progressbar"
+                  >
+                    70%
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1"></div>
+              <form className="w-full">
+                <input
+                  type="file"
+                  id="picture"
+                  name="picture"
+                  accept="image/*"
+                  capture="environment"
+                  onClick={() => {
+                    setScanning(3);
+                    setData("No result");
+                  }}
+                  className="file-input mb-2 w-full text-black "
+                  placeholder="take a picture"
+                />
+
+                <button
+                  type="submit"
+                  onClick={() => {
+                    setScanning(0);
+                    setData("No result");
+                  }}
+                  className="btn btn-success btn-block mb-2 "
+                >
+                  Finish
+                </button>
+              </form>
             </div>
           )}
         </motion.div>
