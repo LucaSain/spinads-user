@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Scanner } from "@yudiel/react-qr-scanner";
 import Link from "next/link";
+import { uploadPicture } from "../actions";
 export default function CameraButton() {
-  const [scanning, setScanning] = useState(0);
+  const [scanning, setScanning] = useState(3);
 
   const [data, setData] = useState("No result");
   const pathname = usePathname();
@@ -140,7 +141,13 @@ export default function CameraButton() {
                 </div>
               </div>
               <div className="flex-1"></div>
-              <form className="w-full">
+              <form
+                action={uploadPicture}
+                className="flex w-full flex-col gap-2"
+              >
+                <label htmlFor="picture" className="btn btn-success btn-block">
+                  Take a picture
+                </label>
                 <input
                   required
                   type="file"
@@ -148,17 +155,16 @@ export default function CameraButton() {
                   name="picture"
                   accept="image/*"
                   capture="environment"
-                  onClick={() => {
-                    setScanning(3);
-                    setData("No result");
+                  onChange={() => {
+                    console.log("decl");
                   }}
-                  className="file-input mb-2 w-full text-black "
+                  className="hidden"
                   placeholder="take a picture"
                 />
 
-                <a type="submit" className="btn btn-success btn-block mb-2 ">
+                <button type="submit" className="btn  btn-block mb-2 ">
                   Finish
-                </a>
+                </button>
               </form>
             </div>
           )}
