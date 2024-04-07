@@ -21,7 +21,7 @@ const MapView = () => {
         >
           <img className="h-16" src="/bike.png" />
         </Marker>
-        <GeolocateControl />
+        <GeolocateControl showAccuracyCircle />
       </Map>
     </div>
   );
