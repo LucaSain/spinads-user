@@ -9,7 +9,7 @@ import Link from "next/link";
 import { triggerBicicleta, uploadPicture } from "../actions";
 
 export default function CameraButton() {
-  const [scanning, setScanning] = useState(3);
+  const [scanning, setScanning] = useState(0);
   const [data, setData] = useState("No result");
   const pathname = usePathname();
   const formRef = useRef(null);
