@@ -7,7 +7,7 @@ import { Scanner } from "@yudiel/react-qr-scanner";
 import Link from "next/link";
 import { uploadPicture } from "../actions";
 export default function CameraButton() {
-  const [scanning, setScanning] = useState(3);
+  const [scanning, setScanning] = useState(0);
 
   const [data, setData] = useState("No result");
   const pathname = usePathname();
@@ -149,7 +149,6 @@ export default function CameraButton() {
                   Take a picture
                 </label>
                 <input
-                  required
                   type="file"
                   id="picture"
                   name="picture"
@@ -162,7 +161,7 @@ export default function CameraButton() {
                   placeholder="take a picture"
                 />
 
-                <button type="submit" className="btn  btn-block mb-2 ">
+                <button type="submit" className="btn btn-block mb-2 ">
                   Finish
                 </button>
               </form>
