@@ -43,14 +43,14 @@ export default function CameraButton() {
             bottom: scanning == 2 || scanning == 3 ? "0px" : "",
             border: scanning == 3 ? "0px" : "",
           }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.4 }}
           style={{
             overflow: "hidden",
-            borderRadius: scanning ? "23px" : "9999px",
+            borderRadius: scanning ? "23px" : "23px",
           }}
           className={
             (scanning ? "flex items-center justify-center" : "btn") +
-            " absolute bottom-0 h-28 w-[90%] rounded-full border-2 border-neutral bg-white shadow-xl"
+            " absolute bottom-0 h-28 w-[90%]  border-2 border-neutral bg-white shadow-xl"
           }
         >
           {!scanning ? (

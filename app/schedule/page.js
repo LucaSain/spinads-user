@@ -1,30 +1,33 @@
+"use client";
+import { useState } from "react";
+
 export default function Schedule() {
-  const Schedule = [
+  const [Schedule, setSchedule] = useState([
     {
-      time: "10:00AM",
+      time: "9:00AM",
       location: "asd asd asd",
-      locationTitle: "location title",
-      message: "message",
-      title: "one",
+      locationTitle: "Ted's Coffee",
+      message: "Pick a coffee on the way to job",
+      title: "Ted's Coffee",
       completed: true,
     },
     {
       time: "10:00AM",
       location: "asd asd asd",
-      locationTitle: "location title",
-      message: "message",
-      title: "two",
+      locationTitle: "5ToGo",
+      message: "More coffee won't hurt, ight",
+      title: "Get more Coffee",
       completed: true,
     },
     {
-      time: "10:00AM",
+      time: "11:00AM",
       location: "asd asd asd",
-      locationTitle: "location title",
-      message: "message",
-      title: "three",
+      locationTitle: "Tucano",
+      message: "Just one more flat white",
+      title: "Check the powerbalance",
       completed: false,
     },
-  ];
+  ]);
   return (
     <div className="flex h-screen w-screen flex-col items-center gap-2 p-4 px-4">
       <h1 className="text-3xl">AI Schedule Generator </h1>
@@ -33,7 +36,34 @@ export default function Schedule() {
           className="textarea w-full shadow-xl "
           placeholder="Tell me about your schedule ✨"
         ></textarea>
-        <button className="btn btn-neutral btn-block bg-black">Parse</button>
+        <button
+          onClick={() => {
+            setSchedule(
+              schedule +
+                [
+                  {
+                    time: "3:00PM",
+                    location: "asd asd asd",
+                    locationTitle: "",
+                    message: "Pick a coffee on the way to job",
+                    title: "Do groceries",
+                    completed: true,
+                  },
+                  {
+                    time: "10:00AM",
+                    location: "asd asd asd",
+                    locationTitle: "5ToGo",
+                    message: "More coffee won't hurt, ight",
+                    title: "Get more Coffee",
+                    completed: true,
+                  },
+                ],
+            );
+          }}
+          className="btn btn-neutral btn-block bg-black"
+        >
+          Generate
+        </button>
         <hr className="divider" />
         <h1 className="font-sans text-3xl">Current schedule</h1>
         <div className="flex w-full flex-col  gap-2">

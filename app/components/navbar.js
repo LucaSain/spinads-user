@@ -14,9 +14,9 @@ export default function Navbar() {
       <div className="relative col-span-2 flex h-12 items-center justify-center">
         <CameraButton />
       </div>
-      <Link href="/quests" className="btn btn-ghost border-2 border-neutral">
+      <Link href="/quests" className=" btn btn-ghost border-2 border-neutral">
         <svg
-          className="w-2/3"
+          className="h-12"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
         >
@@ -25,7 +25,7 @@ export default function Navbar() {
       </Link>
       <Link href="/user" className="btn btn-ghost border-2 border-neutral">
         <svg
-          className="w-2/3"
+          className="h-full"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
         >

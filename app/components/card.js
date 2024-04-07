@@ -1,4 +1,7 @@
 "use client";
+
+import { Purchase } from "../actions";
+
 export default function Card({ shopitem }) {
   return (
     <div
@@ -20,23 +23,27 @@ export default function Card({ shopitem }) {
 
       <dialog
         id={shopitem.title}
-        className="modal modal-bottom sm:modal-middle"
+        className="modal modal-bottom relative sm:modal-middle"
       >
         <div className="modal-box bg-black">
-          <form id={shopitem.title}>
+          <form action={Purchase} id={shopitem.title}>
             <h3 className="text-xl font-bold">{shopitem.title} </h3>
             <span className="text-lg">{shopitem.price} points</span>
-            <p className="pb-4">The item will be sent via mail!</p>
-          </form>
-          <div className="modal-action">
-            <button type="submit" className="btn btn-success">
+            <p className="pb-4">The items will be sent via mail!</p>
+            <button
+              onClick={() => {
+                console.log("??");
+              }}
+              type="submit"
+              className="btn btn-success"
+            >
               Purchase
             </button>
-            <div className="flex-1"></div>
-            <form method="dialog">
-              <button className="btn btn-error">Cancel</button>
-            </form>
-          </div>
+          </form>
+
+          <form className="absolute bottom-6 right-6" method="dialog ">
+            <button className="btn btn-error">Cancel</button>
+          </form>
         </div>
       </dialog>
     </div>

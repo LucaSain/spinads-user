@@ -32,7 +32,7 @@ export default function User() {
               <br /> <span className="text-4xl">32m</span>{" "}
               <span>
                 <svg
-                  className="absolute left-2 top-7 w-40 opacity-20"
+                  className="absolute flex w-[90%] justify-center opacity-20"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                 >
