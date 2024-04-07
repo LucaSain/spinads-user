@@ -2,61 +2,104 @@
 
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { QrReader } from "react-qr-reader";
+import { useEffect, useState } from "react";
+import { Scanner } from "@yudiel/react-qr-scanner";
 import Link from "next/link";
 export default function CameraButton() {
-  const [scanning, setScanning] = useState(false);
+  const [scanning, setScanning] = useState(0);
   const [data, setData] = useState("No result");
   const pathname = usePathname();
 
+  useEffect(() => {
+    if (scanning == 1 && data != "No result") {
+      setScanning(2);
+    }
+  }, [data]);
   if (pathname == "/") {
     return (
-      <motion.div
-        onClick={() => {
-          setScanning(!scanning);
-        }}
-        initial={false}
-        animate={{
-          height: scanning ? "50vh" : "7rem",
-          width: scanning ? "98vw" : "90%",
-        }}
-        transition={{ duration: 0.2 }}
-        style={{
-          overflow: "hidden",
-          borderRadius: scanning ? "23px" : "9999px",
-        }}
-        className={
-          (scanning ? "flex items-center justify-center" : "btn") +
-          " absolute bottom-0 h-28 w-[90%] rounded-full border-2 border-neutral bg-white shadow-xl"
-        }
-      >
-        {!scanning ? (
-          <svg
-            className="w-3/4"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <path d="M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" />
-          </svg>
-        ) : (
-          <div className="w-[90%] rounded-lg">
-            <QrReader
-              onResult={(result, error) => {
-                if (!!result) {
-                  setData(result.text);
-                  alert("nigger");
-                }
-
-                if (!!error) {
-                  console.info(error);
-                }
+      <>
+        <motion.div
+          initial={false}
+          animate={{
+            height:
+              scanning == 0
+                ? "7rem"
+                : scanning == 1
+                  ? "50vh"
+                  : scanning == 2
+                    ? "40vh"
+                    : "98vh",
+            width:
+              scanning == 0
+                ? "90%"
+                : scanning == 1
+                  ? "98vw"
+                  : scanning == 2
+                    ? "100vw"
+                    : "100vw",
+            backgroundColor: scanning == 2 || scanning == 3 ? "black" : "white",
+            bottom: scanning == 2 || scanning == 3 ? "-20px" : "",
+            border: scanning == 3 ? "0px" : "",
+          }}
+          transition={{ duration: 0.2 }}
+          style={{
+            overflow: "hidden",
+            borderRadius: scanning ? "23px" : "9999px",
+          }}
+          className={
+            (scanning ? "flex items-center justify-center" : "btn") +
+            " absolute bottom-0 h-28 w-[90%] rounded-full border-2 border-neutral bg-white shadow-xl"
+          }
+        >
+          {!scanning ? (
+            <svg
+              onClick={() => {
+                setScanning(1);
               }}
-              constraints={{ facingMode: { exact: "environment" } }}
-            />
-          </div>
-        )}
-      </motion.div>
+              className="w-3/4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path d="M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" />
+            </svg>
+          ) : scanning == 1 ? (
+            <div className="w-[90%] rounded-lg">
+              <Scanner
+                components={{ audio: false }}
+                onResult={(result, text) => {
+                  setData(text);
+                  console.log(result, text);
+                }}
+                onError={(error) => {
+                  console.log(error);
+                }}
+                enabled={scanning == 1}
+                constraints={{ facingMode: { exact: "environment" } }}
+              />
+            </div>
+          ) : (
+            <div className="h-full w-full p-4 text-white">
+              <div className="text-5xl font-bold">Ride started</div>
+              <div className="text-lg">Drive safely</div>
+              <br />
+              <div className="font-mono text-3xl font-bold">Time in: 12min</div>
+              <div className="font-mono text-3xl font-bold">
+                Points obtained: 300
+              </div>
+              <br />
+              <div
+                onClick={() => {
+                  setScanning(3);
+                  setData("No result");
+                }}
+                className="btn btn-success btn-block "
+              >
+                End ride
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </>
     );
   }
   return (
