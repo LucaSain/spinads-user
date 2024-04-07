@@ -15,7 +15,17 @@ export default function CameraButton() {
   const formRef = useRef(null);
   useEffect(() => {
     if (scanning == 1 && data != "No result") {
-      setScanning(2);
+      fetch("http://159.65.113.198:3001" + "/api/bikes/rentbike/AAA-002", {
+        headers: {
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInVzZXJuYW1lIjoiQW5kcmVpIElvYW4iLCJpYXQiOjE3MTI0NjQzMjQsImV4cCI6MTcxMjU1MDcyNH0.XoVahPf6e8Wgv9T0LvfTlSDFtG9jpHJGvguYc28l-GY",
+        },
+        method: "POST",
+      }).then((res) => {
+        console.log(res);
+        setScanning(2);
+      });
     }
   }, [data]);
   if (pathname == "/") {
@@ -71,15 +81,6 @@ export default function CameraButton() {
                 components={{ audio: false, tracker: true }}
                 onResult={(result, text) => {
                   setData(text);
-                  fetch("http://159.65.113.198:3001" + "/api/users/myInfo", {
-                    headers: {
-                      Authorization:
-                        "Bearer " +
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInVzZXJuYW1lIjoiQW5kcmVpIElvYW4iLCJpYXQiOjE3MTI0NjQzMjQsImV4cCI6MTcxMjU1MDcyNH0.XoVahPf6e8Wgv9T0LvfTlSDFtG9jpHJGvguYc28l-GY",
-                    },
-                    method: "POST",
-                  });
-                  console.log(result, text);
                 }}
                 onError={(error) => {
                   console.log(error);
