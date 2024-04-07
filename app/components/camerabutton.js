@@ -171,9 +171,9 @@ export default function CameraButton() {
                   placeholder="take a picture"
                 />
 
-                <button type="submit" className="btn btn-block mb-2 ">
+                <a href="/user" className="btn btn-block mb-2 ">
                   Finish
-                </button>
+                </a>
               </form>
             </div>
           )}
