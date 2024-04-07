@@ -29,7 +29,7 @@ export default function CameraButton() {
                   ? "50vh"
                   : scanning == 2
                     ? "40vh"
-                    : "98vh",
+                    : "80vh",
             width:
               scanning == 0
                 ? "90%"
@@ -142,6 +142,7 @@ export default function CameraButton() {
               <div className="flex-1"></div>
               <form className="w-full">
                 <input
+                  required
                   type="file"
                   id="picture"
                   name="picture"
@@ -155,16 +156,9 @@ export default function CameraButton() {
                   placeholder="take a picture"
                 />
 
-                <button
-                  type="submit"
-                  onClick={() => {
-                    setScanning(0);
-                    setData("No result");
-                  }}
-                  className="btn btn-success btn-block mb-2 "
-                >
+                <a type="submit" className="btn btn-success btn-block mb-2 ">
                   Finish
-                </button>
+                </a>
               </form>
             </div>
           )}
