@@ -21,7 +21,7 @@ export default function CameraButton() {
     return (
       <>
         <motion.div
-          initial={false}
+          initial={true}
           animate={{
             height:
               scanning == 0

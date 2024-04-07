@@ -37,7 +37,8 @@ export default function Schedule() {
           placeholder="Tell me about your schedule ✨"
         ></textarea>
         <button
-          onClick={() => {
+          onClick={async () => {
+            await new Promise((r) => setTimeout(r, 3000));
             setSchedule([
               ...Schedule,
 
