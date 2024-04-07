@@ -1,5 +1,3 @@
-"use client";
-
 import { Purchase } from "../actions";
 
 export default function Card({ shopitem }) {
@@ -30,6 +28,18 @@ export default function Card({ shopitem }) {
             <h3 className="text-xl font-bold">{shopitem.title} </h3>
             <span className="text-lg">{shopitem.price} points</span>
             <p className="pb-4">The items will be sent via mail!</p>
+            <input
+              name="price"
+              value={shopitem.price}
+              readOnly
+              className="hidden"
+            />
+            <input
+              name="name"
+              value={shopitem.title}
+              readOnly
+              className="hidden"
+            />
             <button
               onClick={() => {
                 console.log("??");

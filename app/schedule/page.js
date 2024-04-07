@@ -38,27 +38,26 @@ export default function Schedule() {
         ></textarea>
         <button
           onClick={() => {
-            setSchedule(
-              schedule +
-                [
-                  {
-                    time: "3:00PM",
-                    location: "asd asd asd",
-                    locationTitle: "",
-                    message: "Pick a coffee on the way to job",
-                    title: "Do groceries",
-                    completed: true,
-                  },
-                  {
-                    time: "10:00AM",
-                    location: "asd asd asd",
-                    locationTitle: "5ToGo",
-                    message: "More coffee won't hurt, ight",
-                    title: "Get more Coffee",
-                    completed: true,
-                  },
-                ],
-            );
+            setSchedule([
+              ...Schedule,
+
+              {
+                time: "3:00PM",
+                location: "asd asd asd",
+                locationTitle: "Mega Image",
+                message: "Do groceries",
+                title: "Do groceries",
+                completed: false,
+              },
+              {
+                time: "5:00PM",
+                location: "asd asd asd",
+                locationTitle: "World Class Gym",
+                message: "Just Do It bro",
+                title: "Go Gym",
+                completed: false,
+              },
+            ]);
           }}
           className="btn btn-neutral btn-block bg-black"
         >

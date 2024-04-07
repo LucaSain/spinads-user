@@ -67,7 +67,7 @@ export default function CameraButton() {
           ) : scanning == 1 ? (
             <div className="w-[90%] rounded-lg">
               <Scanner
-                components={{ audio: false }}
+                components={{ audio: false, tracker: true }}
                 onResult={(result, text) => {
                   setData(text);
                   console.log(result, text);
@@ -128,7 +128,7 @@ export default function CameraButton() {
               <div className="h-max w-full rounded-lg border-[1px] border-white p-2">
                 <div className="flex h-full w-full flex-row items-center gap-2">
                   <div className="font-mono text-xl">
-                    The one-way speed of light
+                    One-way speed of light
                   </div>
                   <div className="flex-1"></div>
                   <div

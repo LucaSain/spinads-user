@@ -1,4 +1,11 @@
-export default function User() {
+export default async function User() {
+  const userData = await fetch(process.env.BE_URL + "/api/users/myInfo", {
+    headers: {
+      Authorization: "Bearer " + process.env.AUTH_TOKEN,
+    },
+    method: "GET",
+  }).then((res) => res.json());
+
   return (
     <div className="h-screen w-screen">
       <div className="px-4 pt-2 ">
@@ -9,8 +16,12 @@ export default function User() {
             </div>
           </div>
           <div className="flex flex-col justify-end">
-            <h1 className="text-3xl font-bold">Jacqueline</h1>
-            <h1 className="text-3xl font-bold">Aimee</h1>
+            <h1 className="text-3xl font-bold">
+              {userData.username.split(" ")[0]}
+            </h1>
+            <h1 className="text-3xl font-bold">
+              {userData.username.split(" ")[1]}
+            </h1>
             <h3 className="text-lg font-bold">🔥 5 day</h3>
           </div>
         </div>
@@ -20,7 +31,7 @@ export default function User() {
         </button>
         <div className="grid h-[60%] w-full grid-cols-4 grid-rows-4 gap-2 pt-2">
           <div className="col-span-2 flex h-40 w-full flex-col rounded-lg border-2 border-neutral p-2 shadow-xl">
-            <div className="text-5xl font-bold">34km</div>
+            <div className="text-5xl font-bold">{userData.km}km</div>
             <div className="flex-1"></div>
             <div className="text-lg">
               This week <br /> on the wheels.
@@ -28,8 +39,11 @@ export default function User() {
           </div>
           <div className="relative col-span-2 row-span-2 flex h-full w-full flex-col rounded-lg border-2 border-neutral p-2 shadow-xl">
             <div className="flex flex-col justify-center text-6xl font-bold ">
-              54h
-              <br /> <span className="text-4xl">32m</span>{" "}
+              {Math.floor(userData.minutesOnBike / 60)}h
+              <br />{" "}
+              <span className="text-4xl">
+                {userData.minutesOnBike % 60}m
+              </span>{" "}
               <span>
                 <svg
                   className="absolute flex w-[90%] justify-center opacity-20"
@@ -47,7 +61,7 @@ export default function User() {
             </div>
           </div>
           <div className="col-span-2 flex h-40 w-full flex-col rounded-lg border-2  border-neutral bg-black p-2 text-neutral-content shadow-xl">
-            <div className="text-5xl font-bold">3213</div>
+            <div className="text-5xl font-bold">{userData.points}</div>
             <div className="flex-1"></div>
             <div className="text-lg">
               Points <br /> for your goodies.

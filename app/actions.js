@@ -8,7 +8,8 @@ export async function uploadPicture(formData) {
 }
 
 export async function Purchase(formData) {
-  console.log("no way");
+  const price = formData.get("price");
+  const name = formData.get("name");
   const mailjet = new Client({
     apiKey: process.env.MAILJET_API_PUBLIC_KEY,
     apiSecret: process.env.MAILJET_API_PRIVATE_KEY,
@@ -26,10 +27,13 @@ export async function Purchase(formData) {
             Name: "luca",
           },
         ],
-        Subject: "Greetings from Mailjet.",
-        TextPart: "My first Mailjet email",
+        Subject: "Purchase complete at SpinAds",
+        TextPart: "Hi! Here's your recent purchase at Spin Ads!",
         HTMLPart:
-          "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!",
+          "<h3>Dear customer!</h3><br />May the delivery force be with you!" +
+          price +
+          "\n" +
+          name,
         CustomID: "AppGettingStartedTest",
       },
     ],
