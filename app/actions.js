@@ -4,7 +4,7 @@ import { Client } from "node-mailjet";
 export async function uploadPicture(formData) {
   console.log("help");
   const picture = formData.get("picture");
-  redirect("https://spinads-user.vercel.app/");
+  redirect("https://spinads-user.vercel.app/user");
 }
 
 export async function Purchase(formData) {

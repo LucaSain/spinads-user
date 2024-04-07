@@ -7,7 +7,7 @@ import { Scanner } from "@yudiel/react-qr-scanner";
 import Link from "next/link";
 import { uploadPicture } from "../actions";
 export default function CameraButton() {
-  const [scanning, setScanning] = useState(0);
+  const [scanning, setScanning] = useState(3);
 
   const [data, setData] = useState("No result");
   const pathname = usePathname();
