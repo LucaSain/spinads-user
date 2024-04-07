@@ -28,7 +28,7 @@ export default function CameraButton() {
                 : scanning == 1
                   ? "50vh"
                   : scanning == 2
-                    ? "40vh"
+                    ? "50vh"
                     : "90vh",
             width:
               scanning == 0
@@ -39,7 +39,7 @@ export default function CameraButton() {
                     ? "100vw"
                     : "100vw",
             backgroundColor: scanning == 2 || scanning == 3 ? "black" : "white",
-            bottom: scanning == 2 || scanning == 3 ? "10px" : "",
+            bottom: scanning == 2 || scanning == 3 ? "0px" : "",
             border: scanning == 3 ? "0px" : "",
           }}
           transition={{ duration: 0.2 }}
