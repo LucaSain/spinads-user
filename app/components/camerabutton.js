@@ -29,7 +29,7 @@ export default function CameraButton() {
                   ? "50vh"
                   : scanning == 2
                     ? "40vh"
-                    : "80vh",
+                    : "95vh",
             width:
               scanning == 0
                 ? "90%"
